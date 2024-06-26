@@ -32,6 +32,7 @@ pool.query('SELECT NOW()', (err, res) => {
 
 const getNombre = async (req,res) => {
     const request = req.body;
+    await pool.query('SET search_path TO public');
     const respuesta = await pool.query('SELECT nombre FROM "Plantas"');
     console.log(respuesta.error);
     res.send(respuesta.rows);
