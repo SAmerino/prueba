@@ -32,7 +32,7 @@ pool.query('SELECT NOW()', (err, res) => {
 
 const getNombre = async (req,res) => {
     const request = req.body;
-    const respuesta = await pool.query('SELECT * FROM pg_tables WHERE schemaname = "public"');
+    const respuesta = await pool.query('SELECT * FROM Plantas');
     console.log(respuesta.error);
     res.send(respuesta.rows);
     
