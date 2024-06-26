@@ -18,6 +18,16 @@ pool.connect((err, client, release) => {
         console.log('Conexión exitosa a la base de datos');
         release(); // Liberar cliente de la pool cuando no se necesite más
     }
+    const testQuery = async () => {
+        try {
+          const res = await pool.query('SELECT * FROM "Plantas"');
+          console.log(res.rows);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      
+      testQuery();
 });
 
 // Ejemplo de consulta
@@ -32,7 +42,6 @@ pool.query('SELECT NOW()', (err, res) => {
 
 const getNombre = async (req,res) => {
     const request = req.body;
-    await pool.query('SET search_path TO public');
     const respuesta = await pool.query('SELECT nombre FROM "Plantas"');
     console.log(respuesta.error);
     res.send(respuesta.rows);
